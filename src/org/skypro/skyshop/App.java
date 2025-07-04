@@ -12,7 +12,7 @@ public class App {
         Product lemon = new Product("lemon", 60);
         Product orange = new Product("orange", 100);
 
-        ProductBasket basketIvanovI = new ProductBasket("Ivanov Ivan");
+        ProductBasket basketIvanovI = new ProductBasket();
         basketIvanovI.addProduct(milk);
         basketIvanovI.addProduct(fish);
         basketIvanovI.addProduct(eggs);

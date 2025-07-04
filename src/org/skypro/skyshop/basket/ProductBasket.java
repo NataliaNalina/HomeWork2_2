@@ -4,21 +4,18 @@ import org.skypro.skyshop.product.Product;
 
 public class ProductBasket {
     private final Product[] products;
-    private final String buyer;
     private int size;
 
-    public ProductBasket(String buyer) {
+    public ProductBasket(){
         this.products = new Product[5];
-        this.buyer = buyer;
+       }
 
-    }
-
-    public void addProduct(Product newproduct) {
+    public void addProduct(Product newProduct) {
         if (size >= products.length) {
             System.out.println("Корзина полна. Невозможно добавить продукт.");
             return;
         }
-          products[size++] = newproduct;
+          products[size++] = newProduct;
     }
 
     public int getTotalCostBasket() {
