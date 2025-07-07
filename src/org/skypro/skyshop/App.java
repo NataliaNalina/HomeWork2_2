@@ -21,14 +21,12 @@ public class App {
         basketIvanovI.addProduct(lemon);
 
         basketIvanovI.printProductBasket();
-        System.out.println("Стоимость корзины: " +basketIvanovI.getTotalCostBasket());
 
         System.out.println("Товар: "+ corn.getName() + " в корзине " +basketIvanovI.findProduct(corn.getName()));
         System.out.println("Товар: "+ orange.getName() + " в корзине " +basketIvanovI.findProduct(orange.getName()));
 
         basketIvanovI.clearBasket();
         basketIvanovI.printProductBasket();
-        System.out.println("Стоимость корзины: " +basketIvanovI.getTotalCostBasket());
         System.out.println("Товар: "+ corn.getName() + " в корзине " +basketIvanovI.findProduct(corn.getName()));
 
     }

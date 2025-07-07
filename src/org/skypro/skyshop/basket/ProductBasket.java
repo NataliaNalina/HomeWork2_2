@@ -37,6 +37,7 @@ public class ProductBasket {
                 System.out.println(product.getName() + ": " + product.getCost());
             }
         }
+        System.out.println("Стоимость корзины: " + getTotalCostBasket());
     }
 
     public boolean findProduct(String productName) {
