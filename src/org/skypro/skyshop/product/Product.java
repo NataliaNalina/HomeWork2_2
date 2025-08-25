@@ -1,12 +1,11 @@
 package org.skypro.skyshop.product;
 
-public class Product {
-    private  final String name;
-    private  final int cost;
+public abstract class Product {
+    protected final String name;
 
-    public Product(String name, int cost) {
+
+    public Product(String name) {
         this.name = name;
-        this.cost = cost;
 
     }
 
@@ -14,7 +13,7 @@ public class Product {
         return name;
     }
 
-    public int getCost() {
-        return cost;
-    }
+    public abstract int getPrice();
+
+    public abstract Boolean isSpecial();
 }

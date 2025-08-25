@@ -6,26 +6,35 @@ public class ProductBasket {
     private final Product[] products;
     private int size;
 
-    public ProductBasket(){
+    public ProductBasket() {
         this.products = new Product[5];
-       }
+    }
 
     public void addProduct(Product newProduct) {
         if (size >= products.length) {
             System.out.println("Корзина полна. Невозможно добавить продукт.");
             return;
         }
-          products[size++] = newProduct;
+        products[size++] = newProduct;
     }
 
     public int getTotalCostBasket() {
         int totalCost = 0;
         for (Product product : products) {
             if (product != null) {
-                totalCost += product.getCost();
+                totalCost += product.getPrice();
             }
         }
         return totalCost;
+    }
+    public int getQuantitySpecialProduct() {
+        int counter = 0;
+        for (Product product : products) {
+            if ((product != null) && product.isSpecial()){
+                counter += 1;
+            }
+        }
+        return counter;
     }
 
     public void printProductBasket() {
@@ -34,10 +43,12 @@ public class ProductBasket {
         }
         for (Product product : products) {
             if (product != null) {
-                System.out.println(product.getName() + ": " + product.getCost());
+                System.out.println(product);
             }
         }
         System.out.println("Стоимость корзины: " + getTotalCostBasket());
+        System.out.println("Специальных товров: " + getQuantitySpecialProduct());
+
     }
 
     public boolean findProduct(String productName) {
