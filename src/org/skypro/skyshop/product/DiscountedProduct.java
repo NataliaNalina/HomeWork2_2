@@ -12,7 +12,7 @@ public class DiscountedProduct extends Product {
 
     @Override
     public int getPrice() {
-        return basePrice * (1 - discount / 100);
+        return (int) (basePrice * (1 - (double) (discount / 100)));
     }
 
     @Override
@@ -21,8 +21,17 @@ public class DiscountedProduct extends Product {
     }
 
     @Override
-    public Boolean isSpecial() {
+    public boolean isSpecial() {
         return true;
+    }
+
+    public String getSearchTerm() {
+        return super.searchTerm();
+    }
+
+    @Override
+    public String getStringRepresentation() {
+        return getName() + " - " + super.getTypeContent();
     }
 }
 

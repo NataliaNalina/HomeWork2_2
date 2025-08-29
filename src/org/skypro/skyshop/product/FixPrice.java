@@ -19,7 +19,16 @@ public class FixPrice extends Product {
     }
 
     @Override
-    public Boolean isSpecial() {
+    public boolean isSpecial() {
         return true;
+    }
+
+    public String getSearchTerm() {
+        return super.searchTerm();
+    }
+
+    @Override
+    public String getStringRepresentation() {
+        return getName() + " - " + super.getTypeContent();
     }
 }
