@@ -4,8 +4,8 @@ import org.skypro.skyshop.search.Searchable;
 
 public final class Article implements Searchable {
 
-    protected final String title;
-    protected final String text;
+    private final String title;
+    private final String text;
 
     public Article(String title, String text) {
         this.title = title;
@@ -32,8 +32,4 @@ public final class Article implements Searchable {
         return "ARTICLE";
     }
 
-    @Override
-    public String getStringRepresentation() {
-        return getName() + " - " + getTypeContent();
-    }
 }

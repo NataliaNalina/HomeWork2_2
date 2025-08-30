@@ -27,10 +27,11 @@ public class ProductBasket {
         }
         return totalCost;
     }
+
     public int getQuantitySpecialProduct() {
         int counter = 0;
         for (Product product : products) {
-            if (product != null && product.isSpecial()){
+            if (product != null && product.isSpecial()) {
                 counter += 1;
             }
         }

@@ -17,7 +17,7 @@ public class DiscountedProduct extends Product {
 
     @Override
     public String toString() {
-        return this.name + ": " + this.getPrice() + " (" + this.discount + "%)";
+        return this.getName() + ": " + this.getPrice() + " (" + this.discount + "%)";
     }
 
     @Override
@@ -25,13 +25,5 @@ public class DiscountedProduct extends Product {
         return true;
     }
 
-    public String getSearchTerm() {
-        return super.searchTerm();
-    }
-
-    @Override
-    public String getStringRepresentation() {
-        return getName() + " - " + super.getTypeContent();
-    }
 }
 

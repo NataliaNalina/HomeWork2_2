@@ -15,21 +15,11 @@ public class SimpleProduct extends Product {
 
     @Override
     public String toString() {
-        return this.name + ": " + this.price;
+        return this.getName() + ": " + this.getPrice();
     }
 
     @Override
     public boolean isSpecial() {
         return false;
     }
-
-    public String getSearchTerm() {
-        return super.searchTerm();
-    }
-
-    @Override
-    public String getStringRepresentation() {
-        return getName() + " - " + super.getTypeContent();
-    }
-
 }
