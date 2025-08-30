@@ -15,11 +15,11 @@ public class SimpleProduct extends Product {
 
     @Override
     public String toString() {
-        return this.name + ": " + this.price;
+        return this.getName() + ": " + this.getPrice();
     }
 
     @Override
-    public Boolean isSpecial() {
+    public boolean isSpecial() {
         return false;
     }
 }
