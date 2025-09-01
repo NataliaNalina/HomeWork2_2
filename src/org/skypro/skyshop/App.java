@@ -5,10 +5,11 @@ import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.*;
 import org.skypro.skyshop.search.Searchable;
 import org.skypro.skyshop.search.SearchEngine;
+import org.skypro.skyshop.search.BestResultNotFound;
 
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws BestResultNotFound {
         SimpleProduct milk = new SimpleProduct("milk", 80);
         SimpleProduct fish = new SimpleProduct("fish", 200);
         SimpleProduct fishFroze = new SimpleProduct("fish froze", 200);
@@ -35,7 +36,7 @@ public class App {
         System.out.println("Товар: " + corn.getName() + " в корзине " + basketIvanovI.findProduct(corn.getName()));
 
         Article Art1 = new Article("fish", " big fish");
-        Article Art2 = new Article("encapsulation", " It is one of the main directions of object-oriented programming (OOP). fish");
+        Article Art2 = new Article("encapsulation", " It is one fish of the main fish directions of object-oriented programming (OOP). fish");
         SearchEngine searchEngine = new SearchEngine(10);
         searchEngine.add(milk);
         searchEngine.add(fish);
@@ -48,6 +49,46 @@ public class App {
         System.out.println(Art2.getStringRepresentation());
 
         System.out.println(Arrays.toString(searchEngine.search("fish")));
+
+        try {
+            SimpleProduct apricot = new SimpleProduct("apricot", 0);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ошибка " + e);
+
+        }
+        try {
+            SimpleProduct pear = new SimpleProduct("    ", 180);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ошибка " + e);
+
+        }
+        try {
+            DiscountedProduct plum = new DiscountedProduct("plum", 0, -1);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ошибка " + e);
+
+        }
+        try {
+            DiscountedProduct plum = new DiscountedProduct("plum", 80, 150);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ошибка " + e);
+
+        }
+        try {
+            System.out.println(searchEngine.findBestMatch("fish"));
+        } catch (BestResultNotFound e) {
+            System.out.println("Ошибка " + e);
+        }
+        try {
+            System.out.println(searchEngine.findBestMatch("  "));
+        } catch (BestResultNotFound e) {
+            System.out.println("Ошибка " + e);
+        }
+        try {
+            System.out.println(searchEngine.findBestMatch(" ьшд"));
+        } catch (BestResultNotFound e) {
+            System.out.println("Ошибка " + e);
+        }
 
     }
 }

@@ -20,7 +20,7 @@ public class SearchEngine {
 
         for (Searchable item : searchableItems) {
             if (item != null && item.searchTerm().contains(term)) {
-                if (resultCount <  results.length) {
+                if (resultCount < results.length) {
                     results[resultCount++] = item;
                 } else {
                     break;
@@ -28,5 +28,36 @@ public class SearchEngine {
             }
         }
         return results;
+    }
+
+    public Searchable findBestMatch(String term) throws BestResultNotFound {
+
+        Searchable bestResults = null;
+        int found = 0;
+        if (term.isBlank()) {
+            throw new BestResultNotFound("Для пустой строки нет совпадений.");
+        }
+        for (Searchable item : searchableItems) {
+            if (item != null) {
+                String str = item.searchTerm().toLowerCase();
+                int score = 0;
+                int index = 0;
+                while ((index = str.indexOf(term.toLowerCase(), index)) != -1) {
+                    score++;
+                    index++;
+                }
+                if (score > found) {
+                    found = score;
+                    bestResults = item;
+                }
+            }
+        }
+
+        if (bestResults == null) {
+            throw new BestResultNotFound("Для строки " + term + " совпадений нет.");
+        } else {
+            System.out.println("Нашли лучший объект -" + bestResults.getStringRepresentation());
+        }
+        return bestResults;
     }
 }
