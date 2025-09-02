@@ -19,6 +19,7 @@ public class App {
         SimpleProduct orange = new SimpleProduct("orange", 100);
 
         ProductBasket basketIvanovI = new ProductBasket();
+        basketIvanovI.addProduct(lemon);
         basketIvanovI.addProduct(milk);
         basketIvanovI.addProduct(fish);
         basketIvanovI.addProduct(eggs);
@@ -30,10 +31,6 @@ public class App {
 
         System.out.println("Товар: " + corn.getName() + " в корзине " + basketIvanovI.findProduct(corn.getName()));
         System.out.println("Товар: " + orange.getName() + " в корзине " + basketIvanovI.findProduct(orange.getName()));
-
-        basketIvanovI.clearBasket();
-        basketIvanovI.printProductBasket();
-        System.out.println("Товар: " + corn.getName() + " в корзине " + basketIvanovI.findProduct(corn.getName()));
 
         Article Art1 = new Article("fish", " big fish");
         Article Art2 = new Article("encapsulation", " It is one fish of the main fish directions of object-oriented programming (OOP). fish");
@@ -48,7 +45,7 @@ public class App {
         System.out.println(fish.getStringRepresentation());
         System.out.println(Art2.getStringRepresentation());
 
-        System.out.println(Arrays.toString(searchEngine.search("fish")));
+        System.out.println(searchEngine.search("fish"));
 
         try {
             SimpleProduct apricot = new SimpleProduct("apricot", 0);
@@ -89,6 +86,9 @@ public class App {
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка " + e);
         }
+        System.out.println(basketIvanovI.deleteFromBasket("lemon"));
+        basketIvanovI.printProductBasket();
+        System.out.println(basketIvanovI.deleteFromBasket("lemon"));
 
     }
 }

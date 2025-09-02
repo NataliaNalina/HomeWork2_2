@@ -2,20 +2,21 @@ package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class ProductBasket {
-    private final Product[] products;
+    private final ArrayList <Product> products;
     private int size;
 
     public ProductBasket() {
-        this.products = new Product[5];
+        this.products = new ArrayList <Product>();
     }
 
     public void addProduct(Product newProduct) {
-        if (size >= products.length) {
-            System.out.println("Корзина полна. Невозможно добавить продукт.");
-            return;
-        }
-        products[size++] = newProduct;
+
+        products.add(newProduct);
+        size++;
     }
 
     public int getTotalCostBasket() {
@@ -53,8 +54,7 @@ public class ProductBasket {
     }
 
     public boolean findProduct(String productName) {
-        for (int i = 0; i < size; i++) {
-            Product product = products[i];
+        for (Product product : products) {
             if (product.getName().equals(productName)) {
                 return true;
             }
@@ -63,9 +63,25 @@ public class ProductBasket {
     }
 
     public void clearBasket() {
-        for (int i = 0; i < size; i++) {
-            products[i] = null;
+        for (Product product : products) {
+            product = null;
         }
         size = 0;
+    }
+
+    public ArrayList<Product> deleteFromBasket(String productName) {
+        Iterator<Product> iterator = products.iterator();
+        ArrayList<Product> deleteProducts = new ArrayList<Product>();
+        while (iterator.hasNext()) {
+            Product product = iterator.next();
+            if (product.getName().equals(productName)) {
+                deleteProducts.add(product);
+                iterator.remove();
+            }
+        }
+        if (deleteProducts.isEmpty()){
+            System.out.println("Список пуст");
+        }
+        return deleteProducts;
     }
 }
