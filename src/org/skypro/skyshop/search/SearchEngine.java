@@ -1,28 +1,30 @@
 package org.skypro.skyshop.search;
 
+import org.skypro.skyshop.product.Product;
+
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class SearchEngine {
-    private final ArrayList<Searchable> searchableItems;
-    private int count = 0;
+    private final Map<String, Searchable> searchableItems;
 
     public SearchEngine(int size) {
-        searchableItems = new ArrayList<Searchable>();
+        searchableItems = new TreeMap<>();
     }
 
     public void add(Searchable item) {
-        searchableItems.add(item);
-        count++;
-
+        searchableItems.put(item.getName(), item);
     }
 
-    public ArrayList<Searchable> search(String term) {
-        ArrayList<Searchable> results = new ArrayList<Searchable>();
+    public Map<String, Searchable> search(String term) {
         int resultCount = 0;
+        Map<String, Searchable> results = new TreeMap<>();
+        for (Map.Entry<String, Searchable> entry : searchableItems.entrySet()) {
 
-        for (Searchable item : searchableItems) {
-            if (item != null && item.searchTerm().contains(term)) {
-                results.add(item);
+            if (entry.getValue().searchTerm().contains(term)) {
+                results.put(entry.getKey(), entry.getValue());
                 resultCount++;
             }
         }
@@ -36,7 +38,7 @@ public class SearchEngine {
         if (term.isBlank()) {
             throw new BestResultNotFound("Для пустой строки нет совпадений.");
         }
-        for (Searchable item : searchableItems) {
+        for (Searchable item : searchableItems.values()) {
             if (item != null) {
                 String str = item.searchTerm().toLowerCase();
                 int score = 0;
