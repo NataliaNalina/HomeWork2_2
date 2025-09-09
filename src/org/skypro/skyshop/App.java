@@ -86,6 +86,7 @@ public class App {
         } catch (BestResultNotFound e) {
             System.out.println("Ошибка " + e);
         }
+        basketIvanovI.printProductBasket();
         System.out.println(basketIvanovI.deleteFromBasket("lemon"));
         basketIvanovI.printProductBasket();
         System.out.println(basketIvanovI.deleteFromBasket("lemon"));
